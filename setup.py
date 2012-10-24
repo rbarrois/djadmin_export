@@ -39,6 +39,9 @@ setup(
     setup_requires=[
         'distribute',
     ],
+    install_requires=[
+        'Django>=1.3',
+    ],
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
