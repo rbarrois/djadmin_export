@@ -2,7 +2,7 @@
 # Copyright (c) 2012 Raphaël Barrois
 # This code is distributed under the LGPLv3 License.
 
-
+import datetime
 import openpyxl
 import tempfile
 
@@ -54,7 +54,11 @@ class XLSXExporter(base.BaseExporter):
         if isinstance(value, Promise):
             # Force evaluation of lazy objects
             return unicode(value)
-        return value
+        elif isinstance(value, tuple(openpyxl.shared.NUMERIC_TYPES)):
+            return value
+        elif isinstance(value, (bool, datetime.date)):
+            return value
+        return unicode(value)
 
     def fill_file(self, f, columns):
         # Excel sheet titles are limited to 32 chars
