@@ -5,6 +5,7 @@
 
 import datetime
 
+from django.contrib.admin import util as admin_util
 from django.http import HttpResponse
 from django.utils.translation import ugettext_lazy as _
 
@@ -80,8 +81,7 @@ class BaseExporter(object):
 
     def get_column_title(self, name):
         """Return the title of a column."""
-        from django.contrib.admin.util import label_for_field
-        return label_for_field(name,self.model)
+        return admin_util.label_for_field(name, self.model)
 
     def get_columns(self):
         """Retrieve the list of (name, title) of selected columns.
