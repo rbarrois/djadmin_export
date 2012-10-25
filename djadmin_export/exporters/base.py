@@ -79,8 +79,9 @@ class BaseExporter(object):
         return unicode(self.model._meta.verbose_name)
 
     def get_column_title(self, name):
-        """Return the title of a column, as a (lazy) unciode object."""
-        return self.model._meta.get_field(name).verbose_name
+        """Return the title of a column."""
+        from django.contrib.admin.util import label_for_field
+        return label_for_field(name,self.model)
 
     def get_columns(self):
         """Retrieve the list of (name, title) of selected columns.
