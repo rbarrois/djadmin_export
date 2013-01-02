@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # This code is distributed under the LGPLv3+ license.
-# Copyright (c) 2012 Raphaël Barrois
+# Copyright (c) 2012-2013 Raphaël Barrois
 
 from setuptools import setup, find_packages
 import os
