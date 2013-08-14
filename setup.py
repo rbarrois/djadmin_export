@@ -37,7 +37,7 @@ setup(
     download_url="http://pypi.python.org/pypi/djadmin_export/",
     packages=find_packages(),
     setup_requires=[
-        'distribute',
+        'setuptools>=0.8',
     ],
     install_requires=[
         'Django>=1.3',
