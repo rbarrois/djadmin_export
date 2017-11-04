@@ -6,6 +6,7 @@ import datetime
 import openpyxl
 import tempfile
 
+from django.utils.encoding import force_text
 from django.utils.functional import Promise
 
 from . import base
@@ -13,11 +14,11 @@ from . import base
 
 class ExportWorkBook(object):
     def __init__(self):
-        self.book = openpyxl.Workbook(optimized_write=True)
+        self.book = openpyxl.Workbook()
         self.sheet = self.book.create_sheet()
 
     def set_title(self, title):
-        title = unicode(title)
+        title = force_text(title)
         if len(title) >= 32:
             raise ValueError("An excel sheet title cannot be longer than 32 chars.")
         self.sheet.title = title
@@ -30,7 +31,7 @@ class ExportWorkBook(object):
             headers (unicode list): the title of columns
         """
         if headers:
-            headers = [unicode(header) for header in headers]
+            headers = [force_text(header) for header in headers]
             self.sheet.append(headers)
 
         for row in rows:
@@ -53,12 +54,12 @@ class XLSXExporter(base.BaseExporter):
     def normalize_value(self, value):
         if isinstance(value, Promise):
             # Force evaluation of lazy objects
-            return unicode(value)
+            return force_text(value)
         elif isinstance(value, tuple(openpyxl.shared.NUMERIC_TYPES)):
             return value
         elif isinstance(value, (bool, datetime.date)):
             return value
-        return unicode(value)
+        return force_text(value)
 
     def fill_file(self, f, columns):
         # Excel sheet titles are limited to 32 chars

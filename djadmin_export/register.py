@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 # Copyright (c) 2012-2013 Raphaël Barrois
 # This code is distributed under the LGPLv3 License.
-
+from importlib import import_module
 
 from django.conf import settings
 from django.contrib.admin import site as default_admin_site
-from django.utils import importlib
 
 
 def load_exporter(exporter):
@@ -16,7 +15,7 @@ def load_exporter(exporter):
     if isinstance(exporter, str):
         # Got a module name, import it.
         module_name, class_name = exporter.rsplit('.', 1)
-        module = importlib.import_module(module_name)
+        module = import_module(module_name)
         exporter = getattr(module, class_name)
     return exporter
 

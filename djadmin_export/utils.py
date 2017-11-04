@@ -5,6 +5,7 @@
 import re
 import unicodedata
 
+from django.utils.encoding import force_text
 from django.utils.safestring import mark_safe
 
 
@@ -17,7 +18,7 @@ def asciify(unistr):
         >>> asciify(u'Ééüçñøà')
             Eeucna
     """
-    return unicodedata.normalize('NFKD', unicode(unistr)).encode('ascii', 'ignore')
+    return unicodedata.normalize('NFKD', force_text(unistr)).encode('ascii', 'ignore')
 
 
 def slugify(value):
@@ -35,4 +36,4 @@ def slugify(value):
     value = value.strip().lower()
     # Purge non-alphanum or space
     value = re.sub('[^\w\s-]', '', value)
-    return mark_safe(unicode(re.sub('[-\s]+', '-', value)))
+    return mark_safe(force_text(re.sub('[-\s]+', '-', value)))

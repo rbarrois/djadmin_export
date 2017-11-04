@@ -5,8 +5,9 @@
 
 import datetime
 
-from django.contrib.admin import util as admin_util
+from django.contrib.admin import utils as admin_util
 from django.http import HttpResponse
+from django.utils.encoding import force_text
 from django.utils.translation import ugettext_lazy as _
 
 from .. import utils
@@ -77,7 +78,7 @@ class BaseExporter(object):
 
     def make_title(self):
         """Build a title for the current queryset."""
-        return unicode(self.model._meta.verbose_name)
+        return force_text(self.model._meta.verbose_name)
 
     def get_column_title(self, name):
         """Return the title of a column."""
