@@ -43,7 +43,7 @@ def register_exporters(*exporters, **kwargs):
 
 def auto_register_exporters(admin_site=None):
     """Automatically register all exporters defined in settings.
-    
+
     This relies on the ADMIN_EXPORTERS section.
     """
     for exporter in getattr(settings, 'ADMIN_EXPORTERS', ()):

@@ -18,7 +18,7 @@ def asciify(unistr):
         >>> asciify(u'Ééüçñøà')
             Eeucna
     """
-    return unicodedata.normalize('NFKD', force_text(unistr)).encode('ascii', 'ignore')
+    return unicodedata.normalize('NFKD', force_text(unistr)).encode('ascii', 'ignore').decode('ascii')
 
 
 def slugify(value):
