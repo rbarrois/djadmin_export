@@ -1,6 +1,14 @@
-include README.rst
-include doc/Makefile doc/make.bat
-recursive-include doc *.py *.rst
-include doc/_static/.keep_dir
-prune doc/_build
-recursive-include tests *.py
+include CREDITS ChangeLog LICENSE README.rst
+include requirements*.txt
+# Required for 'setup.py build'
+include Makefile
+
+graft djadmin_export
+
+prune dev
+prune docs
+prune tests
+
+global-exclude *.py[cod] __pycache__
+
+exclude tox.ini .flake8 manage.py

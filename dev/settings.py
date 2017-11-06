@@ -1,4 +1,4 @@
-# Django settings for dev_project project.
+# Django settings for dev project.
 
 import os
 ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
@@ -100,10 +100,10 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'dev_project.urls'
+ROOT_URLCONF = 'dev.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'dev_project.wsgi.application'
+WSGI_APPLICATION = 'dev.wsgi.application'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
