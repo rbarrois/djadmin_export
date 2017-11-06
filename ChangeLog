@@ -1,3 +1,11 @@
+v0.2.0 (master)
+---------------
+
+*New:*
+
+    * Add Python3 compatibility
+    * Add Django>=1.8 compatibility
+
 v0.1.2 (24/10/2012)
 -------------------
 
