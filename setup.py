@@ -6,9 +6,11 @@
 import codecs
 import os
 import re
+import subprocess
 import sys
 
 from setuptools import setup, find_packages
+from setuptools.command import build_py
 
 root_dir = os.path.abspath(os.path.dirname(__file__))
 
@@ -25,6 +27,26 @@ def get_version(package_name):
     return '0.1.0'
 
 
+def clean_readme(fname):
+    """Cleanup README.rst for proper PyPI formatting."""
+    with codecs.open(fname, 'r', 'utf-8') as f:
+        return ''.join(
+            re.sub(r':\w+:`([^`]+?)( <[^<>]+>)?`', r'``\1``', line)
+            for line in f
+            if not (line.startswith('.. currentmodule') or line.startswith('.. toctree'))
+        )
+
+
+class BuildWithMakefile(build_py.build_py):
+    """Custom 'build' command that runs 'make build' first."""
+    def run(self):
+        subprocess.check_call(['make', 'build'])
+        if sys.version_info[0] < 3:
+            # Under Python 2.x, build_py is an old-style class.
+            return build_py.build_py.run(self)
+        return super().run()
+
+
 PACKAGE = 'djadmin_export'
 
 
@@ -34,6 +56,7 @@ setup(
     author="Raphaël Barrois",
     author_email="raphael.barrois+%s@polytechnique.org" % PACKAGE,
     description="Export functions for Django admin",
+    long_description=clean_readme('README.rst'),
     license="LGPLv3+",
     keywords=['Django', 'admin', 'export'],
     url="http://github.com/rbarrois/djadmin_export",
@@ -43,7 +66,7 @@ setup(
         'setuptools>=0.8',
     ],
     install_requires=[
-        'Django>=1.3',
+        'Django>=1.8',
     ],
     classifiers=[
         "Development Status :: 4 - Beta",
@@ -64,4 +87,5 @@ setup(
         "Programming Language :: Python :: Implementation :: PyPy",
     ],
     test_suite='tests',
+    zip_safe=False,  # Prevent distribution as eggs for South.
 )
