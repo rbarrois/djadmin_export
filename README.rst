@@ -42,7 +42,7 @@ to install:
 Dependencies
 ============
 
-In itself, ``djadmin_export`` only relies on a recent enough version of ``Django``.
+In itself, ``djadmin_export`` only relies on a recent enough version of ``Django`` (1.8, 1.10 or 1.11).
 
 Each exporter may have specific dependencies:
 
