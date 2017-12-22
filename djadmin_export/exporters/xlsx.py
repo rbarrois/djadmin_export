@@ -64,7 +64,7 @@ class XLSXExporter(base.BaseExporter):
     def fill_file(self, f, columns):
         # Excel sheet titles are limited to 32 chars
         title = self.make_title()[:32]
-        headers = [title for _name, title in columns]
+        headers = [header_title for _name, header_title in columns]
         rows = self.rows(columns)
 
         book = ExportWorkBook()
