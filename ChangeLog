@@ -1,7 +1,8 @@
 0.2.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add support for Openpyxl >= 2.4
+- Fix error with Django>=1.8
 
 
 0.2.0 (2017-11-06)
