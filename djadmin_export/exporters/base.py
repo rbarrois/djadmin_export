@@ -92,7 +92,7 @@ class BaseExporter(object):
         """
         columns = self.options.get('columns')
         if not columns:
-            columns = [f[0].name for f in self.model._meta.get_fields_with_model()]
+            columns = [f.name for f in self.model._meta.get_fields()]
         exclude_columns = self.options.get('exclude_columns')
         if exclude_columns:
             columns = [column for column in columns if column not in exclude_columns]
