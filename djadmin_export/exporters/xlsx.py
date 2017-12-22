@@ -38,7 +38,7 @@ class ExportWorkBook(object):
             self.sheet.append(row)
 
         if headers:
-            self.sheet.auto_filter = self.sheet.calculate_dimension()
+            self.sheet.auto_filter.ref = self.sheet.calculate_dimension()
 
     def write_to_file(self, f):
         """Write the content of the WorkBook to an existing file."""
@@ -55,7 +55,7 @@ class XLSXExporter(base.BaseExporter):
         if isinstance(value, Promise):
             # Force evaluation of lazy objects
             return force_text(value)
-        elif isinstance(value, tuple(openpyxl.shared.NUMERIC_TYPES)):
+        elif isinstance(value, tuple(openpyxl.compat.NUMERIC_TYPES)):
             return value
         elif isinstance(value, (bool, datetime.date)):
             return value
