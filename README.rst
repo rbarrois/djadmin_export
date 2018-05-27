@@ -1,3 +1,26 @@
+==============
+djadmin_export
+==============
+
+.. image:: https://secure.travis-ci.org/rbarrois/djadmin_export.png?branch=master
+    :target: http://travis-ci.org/rbarrois/djadmin_export/
+
+.. image:: https://img.shields.io/pypi/v/djadmin_export.svg
+    :target: https://pypi.python.org/pypi/djadmin_export/
+    :alt: Latest Version
+
+.. image:: https://img.shields.io/pypi/pyversions/djadmin_export.svg
+    :target: https://pypi.python.org/pypi/djadmin_export/
+    :alt: Supported Python versions
+
+.. image:: https://img.shields.io/pypi/wheel/djadmin_export.svg
+    :target: https://pypi.python.org/pypi/djadmin_export/
+    :alt: Wheel status
+
+.. image:: https://img.shields.io/pypi/l/djadmin_export.svg
+    :target: https://pypi.python.org/pypi/djadmin_export/
+    :alt: License
+
 This Django application provides export functionality to all tables in Django's admin.
 
 Installation
